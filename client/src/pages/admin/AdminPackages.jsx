@@ -306,7 +306,7 @@ export default function AdminPackages() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const params = { limit: 100 };
+      const params = { limit: 50 };
       if (category !== "All") params.category = category;
       const res = await packageService.getAll(params);
       setPackages(res.data || []);

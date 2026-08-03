@@ -357,7 +357,7 @@ export default function AdminCameras() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await cameraService.getAll({ limit: 100 });
+      const res = await cameraService.getAll({ limit: 50 });
       setCameras(res.data || []);
     } catch (err) {
       setStatus({ type: "error", message: err.message || "Failed to load cameras" });

@@ -301,7 +301,7 @@ export default function AdminPhotos() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const params = { limit: 100 };
+      const params = { limit: 50 };
       if (category !== "All") params.category = category;
       const res = await photoService.getAll(params);
       setPhotos(res.data || []);
