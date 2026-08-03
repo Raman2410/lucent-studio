@@ -137,8 +137,12 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    // fetch user with password (select: false by default)
-    const user = await User.findOne({ email }).select("+password");
+    // fetch user with password (select: false by default) — also pull
+    // tokenVersion explicitly so signToken() below embeds the real
+    // current value rather than silently defaulting to 0
+    const user = await User.findOne({ email }).select(
+      "+password +tokenVersion",
+    );
 
     // check user exists AND password is correct
     // combined check prevents email enumeration attacks
@@ -254,7 +258,11 @@ const resendVerification = async (req, res, next) => {
 
     console.log(`✅ Verification email resent → ${user.email}`);
 
-    return sendSuccess(res, STATUS.OK, "Verification email sent. Please check your inbox.");
+    return sendSuccess(
+      res,
+      STATUS.OK,
+      "Verification email sent. Please check your inbox.",
+    );
   } catch (error) {
     next(error);
   }
@@ -430,8 +438,12 @@ const changePassword = async (req, res, next) => {
   try {
     const { currentPassword, newPassword } = req.body;
 
-    // fetch user with password field
-    const user = await User.findById(req.user._id).select("+password");
+    // fetch user with password field — also tokenVersion, so the
+    // pre-save hook below increments from the real current value
+    // instead of defaulting to undefined→1 every time
+    const user = await User.findById(req.user._id).select(
+      "+password +tokenVersion",
+    );
 
     // verify current password
     if (!(await user.correctPassword(currentPassword))) {
@@ -580,7 +592,9 @@ const resetPassword = async (req, res, next) => {
     const user = await User.findOne({
       passwordResetToken: hashedToken,
       passwordResetExpires: { $gt: Date.now() }, // not yet expired
-    }).select("+password +passwordResetToken +passwordResetExpires");
+    }).select(
+      "+password +passwordResetToken +passwordResetExpires +tokenVersion",
+    );
 
     if (!user) {
       return next(

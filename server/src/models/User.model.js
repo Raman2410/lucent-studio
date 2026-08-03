@@ -86,6 +86,23 @@ const userSchema = new mongoose.Schema(
     },
 
     // ─────────────────────────────────────
+    // TOKEN VERSION — deterministic auth invalidation
+    // JWT `iat` only has whole-second resolution, so comparing it
+    // against passwordChangedAt can't reliably tell "old token" from
+    // "brand new token" when both happen within the same second (e.g.
+    // register→change-password in a fast test, or a quick double
+    // action in real usage). An incrementing integer sidesteps that
+    // entirely: every password change bumps this, the new token is
+    // signed with the new value, and any token signed with an older
+    // value is rejected — no clock comparison involved.
+    // ─────────────────────────────────────
+    tokenVersion: {
+      type: Number,
+      default: 0,
+      select: false,
+    },
+
+    // ─────────────────────────────────────
     // PASSWORD RESET — forgot password flow
     // token itself is never stored — only its
     // sha256 hash, so a leaked DB can't be used
@@ -177,14 +194,14 @@ userSchema.pre("save", async function (next) {
 userSchema.pre("save", function (next) {
   if (!this.isModified("password") || this.isNew) return next();
 
-  // record the real change time. changedPasswordAfter() below uses a
-  // strict `<` comparison against the JWT's second-resolution `iat`,
-  // so a token issued in the same second createSendToken() re-issues
-  // one right after this save is already treated as valid — no
-  // artificial backdating needed, and backdating by a full second
-  // was letting old tokens survive password changes made within ~1s
-  // of being issued.
+  // kept for display/audit purposes — no longer used to invalidate
+  // tokens (see tokenVersion above for why)
   this.passwordChangedAt = Date.now();
+
+  // this is the actual invalidation mechanism — any token signed
+  // with the previous tokenVersion is now rejected by protect()
+  this.tokenVersion = (this.tokenVersion || 0) + 1;
+
   next();
 });
 
