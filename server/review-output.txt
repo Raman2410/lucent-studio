@@ -1,0 +1,418 @@
+
+> photographer-website-backend@1.0.0 test
+> cross-env NODE_ENV=test jest --runInBand --forceExit review.test.js --verbose
+
+  console.log
+    Γ£à Test DB connected ΓåÆ mongodb+srv://yt-backend:LHyJcbhcTcAOw5FC@yt-backend.aklavks.mongodb.net/photographer_test
+
+      at Object.log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/tests/setup.js:77:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602309010-2tt5qt4l@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à Review created ΓåÆ package:6a6e2105526b1e28c5d15dcb | 5Γÿà | User: test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:109:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602310381-ob08x8e3@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à Review created ΓåÆ camera:6a6e2106526b1e28c5d15de8 | 4Γÿà | User: test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:109:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602311650-0icqkovg@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.error
+    Γ¥î [POST] /api/reviews ΓåÆ You can only review a booking after it's completed
+
+    [0m [90m 147 |[39m
+     [90m 148 |[39m   [90m// log every error with request context[39m
+    [31m[1m>[22m[39m[90m 149 |[39m   console[33m.[39merror([32m`Γ¥î [${req.method}] ${req.originalUrl} ΓåÆ`[39m[33m,[39m err[33m.[39mmessage)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 150 |[39m
+     [90m 151 |[39m   [36mlet[39m error [33m=[39m { [33m...[39merr[33m,[39m message[33m:[39m err[33m.[39mmessage }[33m;[39m
+     [90m 152 |[39m[0m
+
+      at error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/middlewares/error.middleware.js:149:11)
+      at Layer.handle_error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:71:5)
+      at trim_prefix (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:326:13)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:646:15
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:265:14)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:141:14)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:66:14)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602312709-tj9aoxub@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ another@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ another@photographer.com (<mock-1785602313240-yqi5q7i3@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.error
+    Γ¥î [POST] /api/reviews ΓåÆ This booking does not belong to you
+
+    [0m [90m 147 |[39m
+     [90m 148 |[39m   [90m// log every error with request context[39m
+    [31m[1m>[22m[39m[90m 149 |[39m   console[33m.[39merror([32m`Γ¥î [${req.method}] ${req.originalUrl} ΓåÆ`[39m[33m,[39m err[33m.[39mmessage)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 150 |[39m
+     [90m 151 |[39m   [36mlet[39m error [33m=[39m { [33m...[39merr[33m,[39m message[33m:[39m err[33m.[39mmessage }[33m;[39m
+     [90m 152 |[39m[0m
+
+      at error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/middlewares/error.middleware.js:149:11)
+      at Layer.handle_error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:71:5)
+      at trim_prefix (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:326:13)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:646:15
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:265:14)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:141:14)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:60:14)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602314163-3z3xmqlj@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à Review created ΓåÆ package:6a6e210a526b1e28c5d15e31 | 5Γÿà | User: test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:109:13)
+
+  console.error
+    Γ¥î [POST] /api/reviews ΓåÆ You've already reviewed this booking
+
+    [0m [90m 147 |[39m
+     [90m 148 |[39m   [90m// log every error with request context[39m
+    [31m[1m>[22m[39m[90m 149 |[39m   console[33m.[39merror([32m`Γ¥î [${req.method}] ${req.originalUrl} ΓåÆ`[39m[33m,[39m err[33m.[39mmessage)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 150 |[39m
+     [90m 151 |[39m   [36mlet[39m error [33m=[39m { [33m...[39merr[33m,[39m message[33m:[39m err[33m.[39mmessage }[33m;[39m
+     [90m 152 |[39m[0m
+
+      at error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/middlewares/error.middleware.js:149:11)
+      at Layer.handle_error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:71:5)
+      at trim_prefix (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:326:13)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:646:15
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:265:14)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:141:14)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:75:14)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602315477-6h1dlc9p@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.error
+    Γ¥î [POST] /api/reviews ΓåÆ "rating" must be less than or equal to 5
+
+    [0m [90m 147 |[39m
+     [90m 148 |[39m   [90m// log every error with request context[39m
+    [31m[1m>[22m[39m[90m 149 |[39m   console[33m.[39merror([32m`Γ¥î [${req.method}] ${req.originalUrl} ΓåÆ`[39m[33m,[39m err[33m.[39mmessage)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 150 |[39m
+     [90m 151 |[39m   [36mlet[39m error [33m=[39m { [33m...[39merr[33m,[39m message[33m:[39m err[33m.[39mmessage }[33m;[39m
+     [90m 152 |[39m[0m
+
+      at error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/middlewares/error.middleware.js:149:11)
+      at Layer.handle_error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:71:5)
+      at trim_prefix (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:326:13)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:646:15
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:265:14)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:141:14)
+      at Layer.handle_error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:67:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:147:13)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/middlewares/validate.middleware.js:28:14)
+      at Layer.handle [as handle_request] (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:95:5)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:149:13)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/middlewares/auth.middleware.js:81:5)
+
+  console.error
+    Γ¥î [POST] /api/reviews ΓåÆ You are not logged in. Please log in to continue.
+
+    [0m [90m 147 |[39m
+     [90m 148 |[39m   [90m// log every error with request context[39m
+    [31m[1m>[22m[39m[90m 149 |[39m   console[33m.[39merror([32m`Γ¥î [${req.method}] ${req.originalUrl} ΓåÆ`[39m[33m,[39m err[33m.[39mmessage)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 150 |[39m
+     [90m 151 |[39m   [36mlet[39m error [33m=[39m { [33m...[39merr[33m,[39m message[33m:[39m err[33m.[39mmessage }[33m;[39m
+     [90m 152 |[39m[0m
+
+      at error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/middlewares/error.middleware.js:149:11)
+      at Layer.handle_error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:71:5)
+      at trim_prefix (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:326:13)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:646:15
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:265:14)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:141:14)
+      at Layer.handle_error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:67:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:147:13)
+      at Layer.handle_error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:67:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:147:13)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/middlewares/auth.middleware.js:42:14)
+      at Layer.handle [as handle_request] (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:95:5)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:149:13)
+      at Route.dispatch (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/route.js:119:3)
+      at Layer.handle [as handle_request] (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:95:5)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:284:15
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:175:3)
+      at router (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:328:13)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at cookieParser (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/cookie-parser/index.js:57:14)
+      at Layer.handle [as handle_request] (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:328:13)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at urlencodedParser (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/body-parser/lib/types/urlencoded.js:82:7)
+      at Layer.handle [as handle_request] (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:328:13)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/body-parser/lib/read.js:137:5
+      at invokeCallback (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/raw-body/index.js:238:16)
+      at done (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/raw-body/index.js:227:7)
+      at IncomingMessage.onEnd (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/raw-body/index.js:287:7)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602316906-s6taz7g1@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à Review created ΓåÆ package:6a6e210c526b1e28c5d15e6a | 4Γÿà | User: test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:109:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ another@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ another@photographer.com (<mock-1785602317749-phcmkz7e@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à Review created ΓåÆ package:6a6e210c526b1e28c5d15e6a | 2Γÿà | User: another@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:109:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602319813-1qbgdp9d@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à Review created ΓåÆ package:6a6e210f526b1e28c5d15ea4 | 5Γÿà | User: test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:109:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602322411-hjdx33k3@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à Review created ΓåÆ package:6a6e2112526b1e28c5d15ec1 | 5Γÿà | User: test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:109:13)
+
+  console.log
+    ≡ƒùæ∩╕Å  Review deleted ΓåÆ 6a6e2112526b1e28c5d15ec9 | by owner
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:324:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602323955-5u2uflai@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à Review created ΓåÆ package:6a6e2113526b1e28c5d15ee1 | 5Γÿà | User: test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:109:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ another@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ another@photographer.com (<mock-1785602324754-25wnr011@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.error
+    Γ¥î [DELETE] /api/reviews/6a6e2114526b1e28c5d15ee9 ΓåÆ You can only delete your own reviews
+
+    [0m [90m 147 |[39m
+     [90m 148 |[39m   [90m// log every error with request context[39m
+    [31m[1m>[22m[39m[90m 149 |[39m   console[33m.[39merror([32m`Γ¥î [${req.method}] ${req.originalUrl} ΓåÆ`[39m[33m,[39m err[33m.[39mmessage)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 150 |[39m
+     [90m 151 |[39m   [36mlet[39m error [33m=[39m { [33m...[39merr[33m,[39m message[33m:[39m err[33m.[39mmessage }[33m;[39m
+     [90m 152 |[39m[0m
+
+      at error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/middlewares/error.middleware.js:149:11)
+      at Layer.handle_error (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/layer.js:71:5)
+      at trim_prefix (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:326:13)
+      at D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:346:12)
+      at Immediate.next (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:280:10)
+      at Immediate._onImmediate (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/node_modules/express/lib/router/index.js:646:15)
+
+  console.log
+    Γ£à New user registered ΓåÆ test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ test@photographer.com (<mock-1785602326611-i8gaopsg@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à Review created ΓåÆ package:6a6e2116526b1e28c5d15f01 | 5Γÿà | User: test@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:109:13)
+
+  console.log
+    Γ£à New user registered ΓåÆ another@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:73:13)
+
+  console.log
+    Γ£à Email sent [emailVerification] ΓåÆ another@photographer.com (<mock-1785602327411-f6mdshwl@test>)
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/config/nodemailer.js:287:13)
+
+  console.log
+    Γ£à User logged in ΓåÆ another@photographer.com
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/auth.controller.js:151:13)
+
+  console.log
+    ≡ƒùæ∩╕Å  Review deleted ΓåÆ 6a6e2116526b1e28c5d15f09 | by admin
+
+      at log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/src/controllers/review.controller.js:324:13)
+
+  console.log
+    Γ£à Test DB disconnected
+
+      at Object.log (D:\AllProjects\Photographt_Folder\photo-app-camera-rental-tracking-updated (2)../../../../server/tests/setup.js:96:11)
+
+PASS tests/review.test.js (27.516 s)
+  Review API
+    POST /api/reviews
+      ΓêÜ should create a review for a completed photography booking (2179 ms)
+      ΓêÜ should create a review for a completed rental booking (1274 ms)
+      ΓêÜ should reject a review for a non-completed booking (1039 ms)
+      ΓêÜ should reject reviewing someone else's booking (1483 ms)
+      ΓêÜ should reject a duplicate review for the same booking (1318 ms)
+      ΓêÜ should reject a rating outside 1-5 (1006 ms)
+      ΓêÜ should reject unauthenticated requests (419 ms)
+    GET /api/reviews/package/:id
+      ΓêÜ should list reviews with the average rating (2098 ms)
+      ΓêÜ should return zero average for a package with no reviews (549 ms)
+    GET /api/reviews/my
+      ΓêÜ should list only the current user's reviews (2849 ms)
+    DELETE /api/reviews/:id
+      ΓêÜ should let the owner delete their own review and recalculate ratings (1528 ms)
+      ΓêÜ should reject deleting someone else's review (2680 ms)
+      ΓêÜ should let an admin delete any review (2231 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        27.707 s
+Ran all test suites matching /review.test.js/i.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

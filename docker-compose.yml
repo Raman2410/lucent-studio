@@ -1,0 +1,51 @@
+# ─────────────────────────────────────────
+# Photographer Website — docker-compose.yml
+# Runs the full stack together: frontend, backend, MongoDB, Redis
+# ─────────────────────────────────────────
+
+version: "3.9"
+
+services:
+  # ── MongoDB — stores users, bookings, packages, cameras, reviews ──
+  mongo:
+    image: mongo:7
+    container_name: photo-app-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # ── Redis — caching layer for availability / package lookups ──
+  redis:
+    image: redis:7-alpine
+    container_name: photo-app-redis
+    ports:
+      - "6379:6379"
+
+  # ── Backend — Node/Express API ──
+  server:
+    build: ./server
+    container_name: photo-app-server
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./server/.env.development
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/photographer
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - mongo
+      - redis
+
+  # ── Frontend — React/Vite app served via nginx ──
+  client:
+    build: ./client
+    container_name: photo-app-client
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+
+volumes:
+  mongo-data:

@@ -1,0 +1,678 @@
+{
+  "info": {
+    "name": "Photographer Website API",
+    "description": "Complete API collection for the Photographer Portfolio & Booking Platform backend.\n\n## Setup\n1. Import this collection\n2. Set the `base_url` variable (default: http://localhost:5000)\n3. Run \"Register\" or \"Login\" — the JWT token auto-saves to `{{token}}`\n4. All protected routes use `{{token}}` automatically via Bearer auth\n\n## Flow to test booking + payment\n1. Register/Login\n2. Get Packages → copy a package `_id`\n3. Create Booking (photography type) → copy `bookingId`\n4. Create Payment Order → use bookingId\n5. Verify Payment (use Razorpay test mode signature)\n\n## Environment Variables\n- `base_url` — API base URL\n- `token` — JWT auto-saved after login/register\n- `bookingId` — set manually after creating a booking\n- `packageId` — set manually after fetching packages\n- `cameraId` — set manually after fetching cameras\n- `queryId` — set manually after creating a query",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:5000", "type": "string" },
+    { "key": "token", "value": "", "type": "string" },
+    { "key": "bookingId", "value": "", "type": "string" },
+    { "key": "packageId", "value": "", "type": "string" },
+    { "key": "cameraId", "value": "", "type": "string" },
+    { "key": "queryId", "value": "", "type": "string" },
+    { "key": "photoId", "value": "", "type": "string" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/health",
+            "auth": { "type": "noauth" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  const data = pm.response.json();",
+                  "  pm.collectionVariables.set('token', data.token);",
+                  "  console.log('Token saved:', data.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/auth/register",
+            "auth": { "type": "noauth" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rahul Sharma\",\n  \"email\": \"rahul@example.com\",\n  \"password\": \"Test@1234\",\n  \"phone\": \"9876543210\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const data = pm.response.json();",
+                  "  pm.collectionVariables.set('token', data.token);",
+                  "  console.log('Token saved:', data.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/auth/login",
+            "auth": { "type": "noauth" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"rahul@example.com\",\n  \"password\": \"Test@1234\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Current User (me)",
+          "request": { "method": "GET", "url": "{{base_url}}/api/auth/me" }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/auth/me",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rahul Updated\",\n  \"phone\": \"9999999999\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/auth/change-password",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"Test@1234\",\n  \"newPassword\": \"NewTest@1234\",\n  \"confirmPassword\": \"NewTest@1234\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": { "method": "POST", "url": "{{base_url}}/api/auth/logout" }
+        },
+        {
+          "name": "Delete Account",
+          "request": { "method": "DELETE", "url": "{{base_url}}/api/auth/me" }
+        }
+      ]
+    },
+    {
+      "name": "Photos",
+      "item": [
+        {
+          "name": "Get All Photos",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/photos?page=1&limit=12",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Featured Photos",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/photos/featured?limit=12",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Photos By Category",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/photos/category/wedding",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Photo By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/photos/{{photoId}}",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Upload Photo",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/photos/upload",
+            "auth": { "type": "noauth" },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "photo", "type": "file", "src": [] },
+                { "key": "category", "value": "wedding", "type": "text" },
+                { "key": "title", "value": "Golden Hour Wedding", "type": "text" },
+                { "key": "isFeatured", "value": "true", "type": "text" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Photo",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/photos/{{photoId}}",
+            "auth": { "type": "noauth" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Title\",\n  \"isFeatured\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Photo",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/photos/{{photoId}}",
+            "auth": { "type": "noauth" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Packages",
+      "item": [
+        {
+          "name": "Get All Packages",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/packages?page=1&limit=10",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Packages Grouped",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/packages/grouped",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Popular Packages",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/packages/popular?limit=6",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Packages By Category",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/packages/category/wedding",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Package By ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const data = pm.response.json();",
+                  "  pm.collectionVariables.set('packageId', data.data._id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/packages/{{packageId}}",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Create Package",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/packages",
+            "auth": { "type": "noauth" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Premium Wedding Package\",\n  \"tagline\": \"Your perfect day, beautifully captured\",\n  \"category\": \"wedding\",\n  \"type\": \"fixed\",\n  \"price\": { \"amount\": 25000, \"currency\": \"INR\", \"unit\": \"per session\" },\n  \"description\": \"A comprehensive wedding photography package covering your full day.\",\n  \"includes\": [\"8 hours coverage\", \"2 photographers\", \"500+ edited photos\", \"Online gallery\"],\n  \"duration\": { \"value\": 8, \"unit\": \"hours\" },\n  \"deliverables\": { \"editedPhotos\": 500, \"onlineGallery\": true, \"turnaroundDays\": 14 },\n  \"isPopular\": true,\n  \"displayOrder\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Package",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/packages/{{packageId}}",
+            "auth": { "type": "noauth" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isPopular\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Package",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/packages/{{packageId}}",
+            "auth": { "type": "noauth" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cameras",
+      "item": [
+        {
+          "name": "Get All Cameras",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/cameras?page=1&limit=10",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Camera By ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const data = pm.response.json();",
+                  "  pm.collectionVariables.set('cameraId', data.data._id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/cameras/{{cameraId}}",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Camera Availability",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/cameras/{{cameraId}}/availability?month=2024-08",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Calculate Rental Cost",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/cameras/{{cameraId}}/calculate",
+            "auth": { "type": "noauth" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rentalType\": \"daily\",\n  \"quantity\": 2,\n  \"accessories\": [\"Tripod\"],\n  \"withPhotographer\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Create Camera",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/cameras",
+            "auth": { "type": "noauth" },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "image", "type": "file", "src": [] },
+                { "key": "name", "value": "Alpha A7 III", "type": "text" },
+                { "key": "brand", "value": "Sony", "type": "text" },
+                { "key": "model", "value": "A7 III", "type": "text" },
+                { "key": "hourlyRate", "value": "500", "type": "text" },
+                { "key": "dailyRate", "value": "3000", "type": "text" },
+                { "key": "weekendRate", "value": "5000", "type": "text" },
+                { "key": "bodyType", "value": "Mirrorless", "type": "text" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Camera",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/cameras/{{cameraId}}",
+            "auth": { "type": "noauth" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rentalRates\": { \"hourly\": 550, \"daily\": 3200, \"weekend\": 5500 }\n}"
+            }
+          }
+        },
+        {
+          "name": "Toggle Camera Availability",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/cameras/{{cameraId}}/toggle-availability",
+            "auth": { "type": "noauth" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Under maintenance\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Camera",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/cameras/{{cameraId}}",
+            "auth": { "type": "noauth" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Availability",
+      "item": [
+        {
+          "name": "Get Month Availability",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/availability/2024-08",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Check Date Availability",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/availability/check?date=2024-08-15",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Get Blocked Dates",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/availability/blocked",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Block Date (Admin)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/availability/block",
+            "auth": { "type": "noauth" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2024-08-20\",\n  \"reason\": \"Personal holiday\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Unblock Date (Admin)",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/availability/unblock/2024-08-20",
+            "auth": { "type": "noauth" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking (Photography)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  const data = pm.response.json();",
+                  "  pm.collectionVariables.set('bookingId', data.data.bookingId);",
+                  "  console.log('Booking ID saved:', data.data.bookingId);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/bookings",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"photography\",\n  \"packageId\": \"{{packageId}}\",\n  \"date\": \"2024-09-15\",\n  \"time\": \"10:00\",\n  \"location\": \"Mumbai\",\n  \"notes\": \"Outdoor venue preferred\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Create Booking (Rental)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/bookings",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"rental\",\n  \"cameraId\": \"{{cameraId}}\",\n  \"rentalType\": \"daily\",\n  \"rentalQuantity\": 2,\n  \"accessories\": [\"Tripod\"],\n  \"withPhotographer\": false,\n  \"date\": \"2024-09-15\",\n  \"time\": \"09:00\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get My Bookings",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/bookings/my?page=1&limit=10"
+          }
+        },
+        {
+          "name": "Get Booking By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/bookings/{{bookingId}}"
+          }
+        },
+        {
+          "name": "Reschedule Booking",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/bookings/{{bookingId}}/reschedule",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newDate\": \"2024-09-20\",\n  \"newTime\": \"14:00\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Cancel Booking",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/bookings/{{bookingId}}/cancel",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Change of plans\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Booking Status (Admin)",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/bookings/{{bookingId}}/status",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"In Progress\",\n  \"note\": \"Session started on time\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "Create Payment Order",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/payment/order",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookingId\": \"{{bookingId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Verify Payment",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/payment/verify",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"razorpay_order_id\": \"order_xxxxxxxxxxxxx\",\n  \"razorpay_payment_id\": \"pay_xxxxxxxxxxxxx\",\n  \"razorpay_signature\": \"generated_signature_from_checkout\",\n  \"bookingId\": \"{{bookingId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Payment Status",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/payment/status/{{bookingId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Queries (Help Center)",
+      "item": [
+        {
+          "name": "Create Query",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  const data = pm.response.json();",
+                  "  pm.collectionVariables.set('queryId', data.data.queryId);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/queries",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Question about wedding package\",\n  \"message\": \"Does the premium package include drone shots?\",\n  \"category\": \"packages\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get My Queries",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/queries/my?page=1&limit=10"
+          }
+        },
+        {
+          "name": "Get Query By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/queries/{{queryId}}"
+          }
+        },
+        {
+          "name": "Rate AI Response",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/queries/{{queryId}}/rate",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"wasHelpful\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Close Query",
+          "request": {
+            "method": "PATCH",
+            "url": "{{base_url}}/api/queries/{{queryId}}/close"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chat (AI Chatbot)",
+      "item": [
+        {
+          "name": "Chat Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/chat/health",
+            "auth": { "type": "noauth" }
+          }
+        },
+        {
+          "name": "Send Chat Message (SSE Stream)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/chat",
+            "auth": { "type": "noauth" },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "text/event-stream" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"What's included in the wedding package?\",\n  \"history\": []\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+/* ─────────────────────────────────────────
+   FONTS
+   Fraunces — display serif, used with restraint
+   Inter — body/UI workhorse
+   IBM Plex Mono — EXIF-style meta captions
+───────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap");
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────
+   DESIGN TOKENS — "Paper & Darkroom" Luxury Palette
+───────────────────────────────────────── */
+@theme {
+  /* color */
+  --color-paper: #fafaf8;
+  --color-paper-dim: #f3f2ed;
+  --color-paper-dark: #121316;
+  --color-ink: #141518;
+  --color-ink-soft: #28292e;
+  --color-mist: #656871;
+  --color-mist-light: #9497a0;
+  --color-line: #e2e1dc;
+  --color-line-strong: #ceccc3;
+  --color-signature: #2e3e33;
+  --color-signature-soft: #425547;
+  --color-signature-tint: #e7ece6;
+  --color-gold: #c6a052;
+  --color-gold-tint: #f9f5ec;
+
+  /* type */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* motion */
+  --ease-signature: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* shadows */
+  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 25px rgba(46, 62, 51, 0.12);
+}
+
+/* ─────────────────────────────────────────
+   DARK MODE — "Paper & Darkroom" flipped
+   Toggled by adding/removing the `.dark` class
+   on <html> (see ThemeContext.jsx). Every
+   component reads these same --color-* tokens
+   through Tailwind's bg-paper/text-ink/etc.
+   utilities, so redefining the variables here
+   re-themes the whole app without needing
+   `dark:` variants scattered through markup.
+───────────────────────────────────────── */
+.dark {
+  --color-paper: #121316;
+  --color-paper-dim: #1b1c20;
+  --color-paper-dark: #0a0a0c;
+  --color-ink: #f3f2ed;
+  --color-ink-soft: #d7d6d1;
+  --color-mist: #9497a0;
+  --color-mist-light: #6d707a;
+  --color-line: #2c2d33;
+  --color-line-strong: #3d3e46;
+  --color-signature: #6f9a7d;
+  --color-signature-soft: #8bb096;
+  --color-signature-tint: #1c241f;
+  --color-gold: #d9b869;
+  --color-gold-tint: #23201a;
+
+  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 25px rgba(111, 154, 125, 0.18);
+
+  color-scheme: dark;
+}
+
+/* ── Status-color overrides for dark mode ──
+   Several components (StatusBadge, StatusBanner, booking-status pills
+   in MyBookings/BookingDetail/HelpCenter/AdminCameras/AdminDashboard)
+   use plain Tailwind palette classes like bg-red-50/text-red-600/
+   border-red-200 for success/warning/error states. Those are fixed
+   colors, not theme tokens, so they don't adapt on their own — a
+   bg-red-50 chip is a near-white pink box in both themes, which looks
+   fine on a light page but is a glaring light patch on a dark one.
+   These selectors have higher specificity than the plain utility (two
+   classes vs. one) so they win in dark mode without touching every
+   component that uses them. */
+.dark .bg-red-50    { background-color: rgba(248, 113, 113, 0.12); }
+.dark .bg-amber-50  { background-color: rgba(251, 191, 36, 0.12); }
+.dark .bg-blue-50   { background-color: rgba(96, 165, 250, 0.12); }
+.dark .bg-purple-50 { background-color: rgba(192, 132, 252, 0.12); }
+.dark .bg-green-50  { background-color: rgba(74, 222, 128, 0.12); }
+.dark .bg-emerald-50{ background-color: rgba(52, 211, 153, 0.12); }
+
+.dark .text-red-500, .dark .text-red-600, .dark .text-red-700 { color: #f87171; }
+.dark .text-amber-600, .dark .text-amber-700                  { color: #fbbf24; }
+.dark .text-blue-600, .dark .text-blue-700                    { color: #60a5fa; }
+.dark .text-purple-600, .dark .text-purple-700                { color: #c084fc; }
+.dark .text-green-600, .dark .text-green-700                  { color: #4ade80; }
+
+.dark .border-red-200    { border-color: rgba(248, 113, 113, 0.3); }
+.dark .border-amber-200  { border-color: rgba(251, 191, 36, 0.3); }
+.dark .border-blue-200   { border-color: rgba(96, 165, 250, 0.3); }
+.dark .border-purple-200 { border-color: rgba(192, 132, 252, 0.3); }
+.dark .border-green-200  { border-color: rgba(74, 222, 128, 0.3); }
+
+/* ─────────────────────────────────────────
+   BASE STYLES
+───────────────────────────────────────── */
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+    transition: background-color 0.3s var(--ease-signature), color 0.3s var(--ease-signature);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signature);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--color-signature);
+    color: #ffffff;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-paper);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line-strong);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-mist-light);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ─────────────────────────────────────────
+   COMPONENTS & UTILITIES
+───────────────────────────────────────── */
+@layer components {
+  /* EXIF-style meta caption */
+  .meta-caption {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-mist);
+  }
+
+  /* Glassmorphic panel */
+  .glass-panel {
+    background: rgba(250, 250, 248, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 225, 220, 0.7);
+  }
+
+  .glass-panel-dark {
+    background: rgba(20, 21, 24, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass-panel {
+    background: rgba(18, 19, 22, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Framed print — signature photographic mount card */
+  .print-frame {
+    background-color: var(--color-paper);
+    border: 1px solid var(--color-line);
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.4s var(--ease-signature);
+  }
+
+  .print-frame:hover {
+    border-color: var(--color-line-strong);
+    box-shadow: var(--shadow-card);
+    transform: translateY(-2px);
+  }
+
+  .container-page {
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Shimmer effect for skeleton loaders */
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--color-paper-dim) 0%,
+      var(--color-line) 50%,
+      var(--color-paper-dim) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

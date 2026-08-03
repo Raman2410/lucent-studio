@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Lucent Studio | Photography Sessions &amp; Camera Rentals</title>
+    <meta
+      name="description"
+      content="Book professional wedding, portrait, and commercial photography sessions, or rent flagship camera bodies and lenses — transparent pricing, real-time availability, and instant online booking."
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- NOTE: replace with the actual deployed domain before going live -->
+    <link rel="canonical" href="https://lucentstudio.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Lucent Studio" />
+    <meta property="og:title" content="Lucent Studio | Photography Sessions & Camera Rentals" />
+    <meta
+      property="og:description"
+      content="Book professional wedding, portrait, and commercial photography sessions, or rent flagship camera bodies and lenses — transparent pricing, real-time availability, and instant online booking."
+    />
+    <meta property="og:url" content="https://lucentstudio.com/" />
+    <meta property="og:image" content="https://lucentstudio.com/og-image.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lucent Studio | Photography Sessions & Camera Rentals" />
+    <meta
+      name="twitter:description"
+      content="Book professional wedding, portrait, and commercial photography sessions, or rent flagship camera bodies and lenses."
+    />
+    <meta name="twitter:image" content="https://lucentstudio.com/og-image.jpg" />
+
+    <meta name="theme-color" content="#1a1a2e" />
+
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (dark) document.documentElement.classList.add("dark");
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        } catch (e) {
+          // localStorage/matchMedia unavailable — default to light, ThemeProvider will settle it
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

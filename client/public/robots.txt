@@ -1,0 +1,13 @@
+# NOTE: replace lucentstudio.com below with the actual deployed domain
+
+User-agent: *
+Allow: /
+Disallow: /account
+Disallow: /my-bookings
+Disallow: /bookings/
+Disallow: /book/
+Disallow: /pay/
+Disallow: /admin
+Disallow: /help
+
+Sitemap: https://lucentstudio.com/sitemap.xml
